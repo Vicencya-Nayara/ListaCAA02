@@ -75,3 +75,58 @@ Pior Caso: O(n³) - Três loops aninhados.
 Melhor Caso: O(n²) - Se o loop intermediário não executa.
 Caso Médio: O(n³) - Média entre o pior e melhor caso.
 
+9. (Algoritmos recursivos) Determine a função de complexidade, das funções recursivas apresentadas
+abaixo, fazendo as considerações que considerar pertinente.
+1 # Primeira
+2 def Pesquisa1 (A , n ) :
+3 if n > 1:
+4 InspecioneNElementos = n * n * n # custo n^3
+5 Pesquisa1 (A , n // 3)
+6 # Segunda
+7 def Pesquisa2 (A , n ) :
+8 if n <= 1:
+9 return
+10 else :
+11 # obtenha o maior elemento entre os elementos
+12 # de alguma forma isso permite descartar 2/5 dos elementos e fazer
+uma chamada recursiva no resto
+13 Pesquisa2 (A , 3 * n // 5)
+14 # Terceira
+15 def Pesquisa3 (A , n ) :
+16 if n <= 1:
+17 return
+18 else :
+19 # ordena os elementos
+20 # de alguma forma isso permite descartar 1/3 dos elementos e fazer
+uma chamada recursiva no resto
+21 Pesquisa3 (A , 2 * n // 3)
+22 # Magica !!
+23 class Item :
+24 def __init__ ( self , Chave ) :
+25 self . Chave = Chave
+26
+27 def Enigma2 (A , m , n , i , j ) :
+28 x = A [( i + j ) // 2]
+29 while True :
+30 while x . Chave > A [ i ]. Chave :
+31 i += 1
+32 while x . Chave < A [ j ]. Chave :
+33 j -= 1
+34 if i <= j :
+35 A [ i ] , A [ j] = A [ j ] , A [ i ]
+36 i += 1
+37 j -= 1
+38 if i > j :
+39 break
+40
+41 def Enigma1 (A , m , n ) :
+42 i , j = 0 , 0
+43 Enigma2 (A , m , n , i , j )
+44 if m < j :
+45 Enigma1 (A , m , j )
+46 if i < n :
+47 Enigma1 (A , i , n )
+
+RESPOSTA: A função Pesquisa1 é uma função recursiva que divide o tamanho do problema por 3 em cada chamada. A complexidade dessa função pode ser expressa como uma série geométrica, onde o tamanho do problema é reduzido para 1 em log base 3 de n chamadas recursivas. A complexidade será da ordem de O(n^3 * log n), pois em cada chamada a complexidade é n^3, e há log n chamadas recursivas.
+A função Pesquisa2 divide o tamanho do problema por 5/3 em cada chamada recursiva. Assim como no caso anterior, a complexidade pode ser expressa como uma série geométrica, resultando em uma complexidade de O(n^log_(5/3) n).
+A função Pesquisa3 divide o tamanho do problema por 3/2 em cada chamada recursiva. Portanto, a complexidade pode ser expressa como O(n^log_(3/2) n).
