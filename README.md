@@ -62,6 +62,7 @@ Algoritmo 3: O algoritmo 3 também tem dois loops aninhados. O primeiro loop ext
 5 for k in range (1 , j + 1) : 
 6 x = x + 1 
 
+RESPOSTA:
 AlgumaCoisa:
 Esta função tem complexidade O(n³) no pior caso.
 Pior Caso: O(n³) - Três loops aninhados.
