@@ -21,22 +21,34 @@ Saida: [1,2] */
 package Q3;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
-public class MelhorCaso{
+public class MelhorCaso {
 
-  public static int[] encontrarSomaPar(int[] nums, int n, int x) {
-    Arrays.sort(nums);
+    public static int[] encontrarSomaPar(int[] nums, int x) {
+        Map<Integer, Integer> map = new HashMap<>();
 
-    for (int i = 0; i < n - 1; i++) {
-      if (nums[i] + nums[i + 1] == x) {
-        int[] indices = new int[2];
-        indices[0] = i;
-        indices[1] = i + 1;
-        return indices;
-      }
+        for (int i = 0; i < nums.length; i++) {
+            int complement = x - nums[i];
+            if (map.containsKey(complement)) {
+                return new int[]{map.get(complement), i};
+            }
+            map.put(nums[i], i);
+        }
+
+        return null;
     }
 
-    return null;
-  }
-}
+    public static void main(String[] args) {
+        int[] nums1 = {2, 7, 11, 15};
+        int target1 = 9;
+        int[] result1 = encontrarSomaPar(nums1, target1);
+        System.out.println(Arrays.toString(result1));
 
+        int[] nums2 = {3, 2, 4};
+        int target2 = 6;
+        int[] result2 = encontrarSomaPar(nums2, target2);
+        System.out.println(Arrays.toString(result2));
+    }
+}
