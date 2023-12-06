@@ -20,33 +20,29 @@ Saida: [1,2] */
 
 package Q3;
 
-public class SolucaoSimples {
+import java.util.Arrays;
 
-  public static int[] encontrarSomaPar(int[] nums, int n, int x) {
-    for (int i = 0; i < n; i++) {
-      for (int j = 0; j < n; j++) {
+public class SolucaoSimples {
+  public static int[] encontrarSomaPar(int[] nums, int x) {
+    int n = nums.length;
+    for (int i = 0; i < n - 1; i++) {
+      for (int j = i + 1; j < n; j++) {
         if (nums[i] + nums[j] == x) {
-          int[] indices = new int[2];
-          indices[0] = i;
-          indices[1] = j;
-          return indices;
+          return new int[]{i, j};
         }
       }
     }
-
     return null;
-  }
+}
+public static void main(String[] args) {
+  int[] nums1 = {2, 7, 11, 15};
+  int target1 = 9;
+  int[] result1 = encontrarSomaPar(nums1, target1);
+  System.out.println(Arrays.toString(result1));
 
-  public static void main(String[] args) {
-    int[] nums = {2, 7, 11, 15};
-    int x = 9;
-
-    int[] indices = encontrarSomaPar(nums, nums.length, x);
-
-    if (indices != null) {
-      System.out.println("Os índices dos números que somam " + x + " são " + indices[0] + " e " + indices[1] + ".");
-    } else {
-      System.out.println("Não existe uma solução.");
-    }
+  int[] nums2 = {3, 2, 4};
+  int target2 = 6;
+  int[] result2 = encontrarSomaPar(nums2, target2);
+  System.out.println(Arrays.toString(result2));
   }
 }
